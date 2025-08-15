@@ -66,14 +66,16 @@ const MainContent = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   padding: 24px;
-  min-height: 100vh;
+  height: calc(100vh - 160px); /* Account for header height (~160px) */
   max-width: 1400px;
   margin: 0 auto;
+  box-sizing: border-box;
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 16px;
+    height: calc(100vh - 140px); /* Smaller header on mobile */
   }
 `;
 
@@ -81,12 +83,27 @@ const LeftPanel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-height: 0; /* Allow flexbox shrinking */
+  height: 100%;
 `;
 
 const RightPanel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0;
+  min-height: 0; /* Allow flexbox shrinking */
+  height: 100%;
+  
+  /* Ensure PlaylistPreview gets most of the space */
+  > *:first-child {
+    flex: 1;
+    min-height: 0; /* Allow flexbox shrinking */
+  }
+  
+  /* PlaylistControls gets auto height */
+  > *:last-child {
+    flex-shrink: 0;
+  }
 `;
 
 const Header = styled.div`
