@@ -1,0 +1,355 @@
+{
+  "name": "spotify_create_playlist",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "track",
+        "operation": "search",
+        "query": "={{ $json.spotifySearchQuery }}",
+        "limit": 1,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.spotify",
+      "typeVersion": 1,
+      "position": [
+        560,
+        192
+      ],
+      "id": "294b67b9-4b35-421c-8fe1-e81e6c7707b1",
+      "name": "Search tracks by keyword",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "spotifyOAuth2Api": {
+          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "name": "Spotify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "59da5703-983f-434b-bd83-d0cdfa0d532c",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "const tracks = $input.all();\nconsole.log(tracks)\nconst foundTracks = tracks.map(track => track.json.id);\nreturn foundTracks.map(id => ({ json: { id } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -16
+      ],
+      "id": "75c58108-3c66-423d-b351-78d4b979515b",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "resource": "playlist",
+        "id": "={{ $('create_playlist').item.json.id }}",
+        "trackID": "=spotify:track:{{ $json.id }}",
+        "additionalFields": {
+          "position": 0
+        }
+      },
+      "type": "n8n-nodes-base.spotify",
+      "typeVersion": 1,
+      "position": [
+        1104,
+        160
+      ],
+      "id": "255c19d4-de48-400e-b3a9-92f07ddd0b43",
+      "name": "Add an Item to a playlist",
+      "credentials": {
+        "spotifyOAuth2Api": {
+          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "name": "Spotify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        -16
+      ],
+      "id": "cbd58537-6a56-498c-aa6f-029a12dff262",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseKey": "={{ $('create_playlist').item.json.external_urls.spotify }}"
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1136,
+        -112
+      ],
+      "id": "abd17b5a-9087-423e-a165-23a4e3d1028d",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-playlist",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "83718b31-d743-485f-9161-283be50d8a17",
+      "name": "initial_webhook",
+      "webhookId": "a8edcdb1-093c-48a2-916b-cfa27ba05e76",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// console.log($(\"initial_webhook\").first())\nreturn $(\"initial_webhook\").first().json.body.songs"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        304,
+        -240
+      ],
+      "id": "7a5bf171-b145-4317-b4c8-f8e552987d29",
+      "name": "extract songs"
+    },
+    {
+      "parameters": {
+        "resource": "playlist",
+        "operation": "create",
+        "name": "={{ $json.body.playlistName }}",
+        "additionalFields": {
+          "public": true
+        }
+      },
+      "type": "n8n-nodes-base.spotify",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ad4fc5ea-918a-44f5-a784-788921065ae0",
+      "name": "create_playlist",
+      "credentials": {
+        "spotifyOAuth2Api": {
+          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "name": "Spotify account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "initial_webhook": [
+      {
+        "json": {
+          "headers": {
+            "user-agent": "vscode-restclient",
+            "content-type": "application/json",
+            "accept-encoding": "gzip, deflate",
+            "content-length": "1757",
+            "host": "127.0.0.1:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "playlistName": "Shape of You Vibes",
+            "songs": [
+              {
+                "artist": "Justin Bieber",
+                "title": "Sorry",
+                "spotifySearchQuery": "justin bieber sorry"
+              },
+              {
+                "artist": "Shawn Mendes",
+                "title": "There's Nothing Holdin' Me Back",
+                "spotifySearchQuery": "shawn mendes there's nothing holdin' me back"
+              },
+              {
+                "artist": "Charlie Puth",
+                "title": "Attention",
+                "spotifySearchQuery": "charlie puth attention"
+              },
+              {
+                "artist": "Dua Lipa",
+                "title": "IDGAF",
+                "spotifySearchQuery": "dua lipa idgaf"
+              },
+              {
+                "artist": "Maroon 5",
+                "title": "Don't Wanna Know (feat. Kendrick Lamar)",
+                "spotifySearchQuery": "maroon 5 don't wanna know"
+              },
+              {
+                "artist": "Sam Smith",
+                "title": "How Do You Sleep?",
+                "spotifySearchQuery": "sam smith how do you sleep"
+              },
+              {
+                "artist": "Rudimental feat. Jess Glynne, Macklemore & Dan Caplen",
+                "title": "These Days",
+                "spotifySearchQuery": "rudimental these days"
+              },
+              {
+                "artist": "Anne-Marie",
+                "title": "2002",
+                "spotifySearchQuery": "anne-marie 2002"
+              },
+              {
+                "artist": "Clean Bandit feat. Zara Larsson",
+                "title": "Symphony",
+                "spotifySearchQuery": "clean bandit symphony"
+              },
+              {
+                "artist": "Jason Derulo",
+                "title": "Want To Want Me",
+                "spotifySearchQuery": "jason derulo want to want me"
+              }
+            ]
+          },
+          "webhookUrl": "http://127.0.0.1:5678/webhook/create-playlist",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search tracks by keyword",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search tracks by keyword": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add an Item to a playlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add an Item to a playlist": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "initial_webhook": {
+      "main": [
+        [
+          {
+            "node": "create_playlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract songs": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create_playlist": {
+      "main": [
+        [
+          {
+            "node": "extract songs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1b9414da-f64e-4298-8908-9d1cd8baa251",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2abed0c114b5616f758cc70acc833b7c70c35c2a6f8faa6bb17df9259e92a6e9"
+  },
+  "id": "xHJYaPhpl9bbmWe6",
+  "tags": []
+}

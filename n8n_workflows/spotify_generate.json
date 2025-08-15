@@ -1,0 +1,114 @@
+{
+  "name": "Spotify_generate",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-suggestions",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8f229e7b-8be4-4513-a0d6-242c89619383",
+      "name": "Webhook",
+      "webhookId": "726a39b9-22b1-4c6a-88bc-6546697c1f1f",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a music curator. Generate playlist suggestions with at least 60 songs based on user prompts.\n  Respond with valid JSON in this exact format:\n  {\n    \"suggestions\": [\n      {\n        \"artist\": \"Artist Name\",\n        \"title\": \"Song Title\",\n        \"reasoning\": \"Why this song fits\",\n        \"spotifySearchQuery\": \"artist song title\"\n      }\n    ],\n    \"playlistName\": \"Generated Playlist Name\",\n    \"playlistDescription\": \"Brief description\"\n  }",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.body.prompt }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        208,
+        0
+      ],
+      "id": "05bfa21b-ddfc-4812-aa37-8f3c77544970",
+      "name": "Message a model",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseKey": "body"
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        560,
+        0
+      ],
+      "id": "cebc255f-d6fe-4d36-870d-fe9d96f56705",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7b03fd3d-9a47-41a5-b001-58518fd9e1e8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2abed0c114b5616f758cc70acc833b7c70c35c2a6f8faa6bb17df9259e92a6e9"
+  },
+  "id": "OWhBRVdmoAaogbwc",
+  "tags": []
+}

@@ -1,0 +1,130 @@
+POST http://127.0.0.1:5678/webhook/generate-suggestions
+Content-Type: application/json
+
+{
+    "prompt": "Generate a list of 10 songs that are similar to the song 'Shape of You' by Ed Sheeran."
+}
+
+POST http://127.0.0.1:5678/webhook/refine-suggestions
+Content-Type: application/json
+
+{
+    "currentPlaylist": {
+        "suggestions": [
+          {
+            "artist": "Justin Bieber",
+            "title": "Sorry",
+            "spotifySearchQuery": "justin bieber sorry"
+          },
+          {
+            "artist": "Shawn Mendes",
+            "title": "There's Nothing Holdin' Me Back",
+            "spotifySearchQuery": "shawn mendes there's nothing holdin' me back"
+          },
+          {
+            "artist": "Charlie Puth",
+            "title": "Attention",
+            "spotifySearchQuery": "charlie puth attention"
+          },
+          {
+            "artist": "Dua Lipa",
+            "title": "IDGAF",
+            "spotifySearchQuery": "dua lipa idgaf"
+          },
+          {
+            "artist": "Maroon 5",
+            "title": "Don't Wanna Know (feat. Kendrick Lamar)",
+            "spotifySearchQuery": "maroon 5 don't wanna know"
+          },
+          {
+            "artist": "Sam Smith",
+            "title": "How Do You Sleep?",
+            "spotifySearchQuery": "sam smith how do you sleep"
+          },
+          {
+            "artist": "Rudimental feat. Jess Glynne, Macklemore & Dan Caplen",
+            "title": "These Days",
+            "spotifySearchQuery": "rudimental these days"
+          },
+          {
+            "artist": "Anne-Marie",
+            "title": "2002",
+            "spotifySearchQuery": "anne-marie 2002"
+          },
+          {
+            "artist": "Clean Bandit feat. Zara Larsson",
+            "title": "Symphony",
+            "spotifySearchQuery": "clean bandit symphony"
+          },
+          {
+            "artist": "Jason Derulo",
+            "title": "Want To Want Me",
+            "spotifySearchQuery": "jason derulo want to want me"
+          }
+        ],
+        "playlistName": "Shape of You Vibes",
+        "playlistDescription": "Ten infectious pop tracks with rhythmic beats and catchy hooks, perfect for fans of Ed Sheeran's 'Shape of You.'"
+      },
+    "feedback": "make it better"
+}
+
+POST http://127.0.0.1:5678/webhook/create-playlist
+Content-Type: application/json
+
+{
+    "playlistName": "Shape of You Vibes",
+    
+    "songs": [
+          {
+            "artist": "Justin Bieber",
+            "title": "Sorry",
+            "spotifySearchQuery": "justin bieber sorry"
+          },
+          {
+            "artist": "Shawn Mendes",
+            "title": "There's Nothing Holdin' Me Back",
+            "spotifySearchQuery": "shawn mendes there's nothing holdin' me back"
+          },
+          {
+            "artist": "Charlie Puth",
+            "title": "Attention",
+            "spotifySearchQuery": "charlie puth attention"
+          },
+          {
+            "artist": "Dua Lipa",
+            "title": "IDGAF",
+            "spotifySearchQuery": "dua lipa idgaf"
+          },
+          {
+            "artist": "Maroon 5",
+            "title": "Don't Wanna Know (feat. Kendrick Lamar)",
+            "spotifySearchQuery": "maroon 5 don't wanna know"
+          },
+          {
+            "artist": "Sam Smith",
+            "title": "How Do You Sleep?",
+            "spotifySearchQuery": "sam smith how do you sleep"
+          },
+          {
+            "artist": "Rudimental feat. Jess Glynne, Macklemore & Dan Caplen",
+            "title": "These Days",
+            "spotifySearchQuery": "rudimental these days"
+          },
+          {
+            "artist": "Anne-Marie",
+            "title": "2002",
+            "spotifySearchQuery": "anne-marie 2002"
+          },
+          {
+            "artist": "Clean Bandit feat. Zara Larsson",
+            "title": "Symphony",
+            "spotifySearchQuery": "clean bandit symphony"
+          },
+          {
+            "artist": "Jason Derulo",
+            "title": "Want To Want Me",
+            "spotifySearchQuery": "jason derulo want to want me"
+          }
+        ]
+      
+}

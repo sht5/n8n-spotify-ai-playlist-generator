@@ -1,0 +1,114 @@
+{
+  "name": "spotify_refine",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "refine-suggestions",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b1709dc8-7c6e-47af-8e92-10d54fb17382",
+      "name": "Webhook",
+      "webhookId": "64c7275b-4eb7-4d95-be79-c95846b76af2",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are refining a music playlist based on user feedback. You will receive the current playlist and user feedback. Modify the playlist accordingly but with at least 60 songs and\n  respond with the same JSON format:\n  {\n    \"suggestions\": [\n      {\n        \"artist\": \"Artist Name\",\n        \"title\": \"Song Title\",\n        \"reasoning\": \"Why this song fits the refined criteria\",\n        \"spotifySearchQuery\": \"artist song title\"\n      }\n    ],\n    \"playlistName\": \"Updated Playlist Name\",\n    \"playlistDescription\": \"Brief description reflecting changes\"\n  }\n  Current playlist: {{ JSON.stringify($json.body.currentPlaylist) }}\n  Apply the feedback to improve the playlist while maintaining 10-15 songs unless specified otherwise.",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.body.feedback }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2551b0a8-8d80-4f55-9044-54709745a569",
+      "name": "Message a model",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseKey": "={{ $json.message.content }}"
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        576,
+        0
+      ],
+      "id": "3bcd4cdc-1996-4a3a-8cc8-b40bbbf7d0b4",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ab0adfd7-e185-43c1-b951-e41d41a18fcc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2abed0c114b5616f758cc70acc833b7c70c35c2a6f8faa6bb17df9259e92a6e9"
+  },
+  "id": "xOMnfqUhtmgWxGDI",
+  "tags": []
+}

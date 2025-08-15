@@ -1,0 +1,99 @@
+/* Global reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #0f0f0f;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #0f0f0f;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Remove default button and input styles */
+button, input, textarea {
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1DB954;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1ed760;
+}
+
+/* Selection colors */
+::selection {
+  background: rgba(29, 185, 84, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(29, 185, 84, 0.3);
+  color: white;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #1DB954;
+  outline-offset: 2px;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+/* Link styles */
+a {
+  color: #1DB954;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #1ed760;
+  text-decoration: underline;
+}
