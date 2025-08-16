@@ -63,9 +63,9 @@ const MainContent = styled.div`
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 16px;
+  grid-template-columns: 2fr 3fr;
+  gap: 12px;
+  padding: 12px;
   height: calc(100vh - 120px); /* Account for header height (~120px) */
   max-width: 1400px;
   margin: 0 auto;
@@ -73,8 +73,8 @@ const MainContent = styled.div`
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 12px;
+    gap: 10px;
+    padding: 10px;
     height: calc(100vh - 100px); /* Smaller header on mobile */
   }
 `;
@@ -82,7 +82,7 @@ const MainContent = styled.div`
 const LeftPanel = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   min-height: 0; /* Allow flexbox shrinking */
   height: 100%;
 `;
@@ -90,25 +90,13 @@ const LeftPanel = styled.div`
 const RightPanel = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0;
   min-height: 0; /* Allow flexbox shrinking */
   height: 100%;
-  
-  /* Ensure PlaylistPreview gets most of the space */
-  > *:first-child {
-    flex: 1;
-    min-height: 0; /* Allow flexbox shrinking */
-  }
-  
-  /* PlaylistControls gets auto height */
-  > *:last-child {
-    flex-shrink: 0;
-  }
 `;
 
 const Header = styled.div`
   text-align: center;
-  padding: 20px 20px 0 20px;
+  padding: 16px 20px 0 20px;
   position: relative;
   z-index: 2;
 `;
@@ -175,11 +163,11 @@ function App() {
         <MainContent>
           <LeftPanel>
             <ChatInterface />
+            <PlaylistControls />
           </LeftPanel>
 
           <RightPanel>
             <PlaylistPreview />
-            <PlaylistControls />
           </RightPanel>
         </MainContent>
       </AppContainer>

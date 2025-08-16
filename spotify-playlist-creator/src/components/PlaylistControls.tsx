@@ -5,17 +5,19 @@ import { usePlaylist } from '../context/PlaylistContext';
 import { apiService } from '../services/api';
 import { VinylLoader } from './VinylLoader';
 
-const ControlsContainer = styled.div`
-  padding: 20px;
+const ControlsContainer = styled.div<{ disabled: boolean }>`
+  padding: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(10, 10, 10, 0.5);
+  opacity: ${props => props.disabled ? 0.5 : 1};
+  transition: opacity 0.3s ease;
 `;
 
 const ControlsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 12px;
 `;
 
 const InputGroup = styled.div`
@@ -26,7 +28,7 @@ const InputGroup = styled.div`
 
 const Label = styled.label`
   color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -35,10 +37,10 @@ const Label = styled.label`
 const Input = styled.input`
   background: rgba(40, 40, 40, 0.8);
   border: 1px solid rgba(29, 185, 84, 0.3);
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: 6px;
+  padding: 8px 12px;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   outline: none;
   transition: all 0.2s ease;
   
@@ -55,9 +57,9 @@ const Input = styled.input`
 const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   grid-column: 1 / -1;
-  margin-top: 8px;
+  margin-top: 4px;
 `;
 
 const Checkbox = styled.input`
@@ -68,7 +70,7 @@ const Checkbox = styled.input`
 
 const CheckboxLabel = styled.label`
   color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
 `;
 
@@ -79,22 +81,22 @@ const CreateButton = styled(motion.button)<{ disabled: boolean }>`
     : 'linear-gradient(135deg, #1DB954, #1ed760)'
   };
   border: none;
-  border-radius: 12px;
-  padding: 16px 24px;
+  border-radius: 8px;
+  padding: 12px 20px;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 12px;
   
   &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(29, 185, 84, 0.3);
   }
 `;
 
@@ -250,9 +252,10 @@ export const PlaylistControls: React.FC = () => {
   };
 
   const canCreatePlaylist = state.currentPlaylist.length > 0 && !state.isLoading;
+  const hasPlaylist = state.currentPlaylist.length > 0;
 
   return (
-    <ControlsContainer>
+    <ControlsContainer disabled={!hasPlaylist}>
       <ControlsGrid>
         <InputGroup>
           <Label>Playlist Name</Label>
@@ -261,7 +264,7 @@ export const PlaylistControls: React.FC = () => {
             value={playlistName}
             onChange={(e) => setPlaylistName(e.target.value)}
             placeholder="Enter playlist name..."
-            disabled={state.isLoading}
+            disabled={state.isLoading || !hasPlaylist}
           />
         </InputGroup>
 
@@ -272,7 +275,7 @@ export const PlaylistControls: React.FC = () => {
             value={playlistDescription}
             onChange={(e) => setPlaylistDescription(e.target.value)}
             placeholder="Add a description..."
-            disabled={state.isLoading}
+            disabled={state.isLoading || !hasPlaylist}
           />
         </InputGroup>
 
@@ -282,7 +285,7 @@ export const PlaylistControls: React.FC = () => {
             id="isPublic"
             checked={isPublic}
             onChange={(e) => setIsPublic(e.target.checked)}
-            disabled={state.isLoading}
+            disabled={state.isLoading || !hasPlaylist}
           />
           <CheckboxLabel htmlFor="isPublic">
             Make playlist public

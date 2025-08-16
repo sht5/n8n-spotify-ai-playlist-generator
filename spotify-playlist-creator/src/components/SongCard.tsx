@@ -7,9 +7,9 @@ const CardContainer = styled(motion.div)`
   background: rgba(30, 30, 30, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(29, 185, 84, 0.2);
-  border-radius: 12px;
-  padding: 12px;
-  margin: 4px 0;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 2px 0;
   transition: all 0.3s ease;
   cursor: grab;
   
@@ -28,18 +28,18 @@ const CardContainer = styled(motion.div)`
 const CardHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 `;
 
 const AlbumArt = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background: linear-gradient(135deg, #1DB954, #1ed760);
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   flex-shrink: 0;
   position: relative;
@@ -71,9 +71,9 @@ const SongInfo = styled.div`
 
 const SongTitle = styled.h3`
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  margin: 0 0 2px 0;
+  margin: 0 0 1px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -81,7 +81,7 @@ const SongTitle = styled.h3`
 
 const ArtistName = styled.p`
   color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
+  font-size: 11px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -91,10 +91,10 @@ const ArtistName = styled.p`
 const RemoveButton = styled.button`
   background: rgba(220, 20, 60, 0.1);
   border: 1px solid rgba(220, 20, 60, 0.3);
-  border-radius: 6px;
+  border-radius: 4px;
   color: #dc143c;
-  padding: 6px 10px;
-  font-size: 11px;
+  padding: 4px 8px;
+  font-size: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
   
@@ -105,18 +105,22 @@ const RemoveButton = styled.button`
 `;
 
 const Reasoning = styled.p`
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 11px;
-  margin: 8px 0 0 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  margin: 6px 0 0 0;
   font-style: italic;
-  line-height: 1.3;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const DragHandle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1px;
-  padding: 6px;
+  padding: 4px;
   cursor: grab;
   opacity: 0.5;
   transition: opacity 0.2s ease;
@@ -131,8 +135,8 @@ const DragHandle = styled.div`
 `;
 
 const DragDot = styled.div`
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
 `;

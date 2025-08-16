@@ -12,7 +12,7 @@ const ChatContainer = styled.div`
   height: 100%;
   background: rgba(20, 20, 20, 0.8);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 12px;
   border: 1px solid rgba(29, 185, 84, 0.2);
   overflow: hidden;
 `;
@@ -21,24 +21,24 @@ const ChatContainer = styled.div`
 const MessagesContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   
   /* Custom scrollbar */
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
   
   &::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    border-radius: 2px;
   }
   
   &::-webkit-scrollbar-thumb {
     background: #1DB954;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 `;
 
@@ -68,14 +68,14 @@ const MessageTime = styled.div`
 `;
 
 const InputContainer = styled.div`
-  padding: 20px;
+  padding: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(10, 10, 10, 0.5);
 `;
 
 const InputWrapper = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: flex-end;
 `;
 
