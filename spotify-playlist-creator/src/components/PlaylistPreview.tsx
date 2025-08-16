@@ -19,36 +19,36 @@ const PlaylistContainer = styled.div`
 `;
 
 const PlaylistHeader = styled.div`
-  padding: 20px;
+  padding: 12px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(10, 10, 10, 0.5);
 `;
 
 const PlaylistTitle = styled.h2`
   color: #1DB954;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   margin: 0;
 `;
 
 const PlaylistDescription = styled.p`
   color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  margin: 8px 0 0 0;
+  font-size: 13px;
+  margin: 6px 0 0 0;
   line-height: 1.4;
 `;
 
 const SongCount = styled.div`
   color: rgba(255, 255, 255, 0.6);
-  font-size: 12px;
-  margin: 12px 0 0 0;
+  font-size: 11px;
+  margin: 8px 0 0 0;
   font-weight: 500;
 `;
 
 const SongsContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 12px;
   
   /* Custom scrollbar */
   &::-webkit-scrollbar {

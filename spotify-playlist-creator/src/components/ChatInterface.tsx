@@ -17,26 +17,6 @@ const ChatContainer = styled.div`
   overflow: hidden;
 `;
 
-const ChatHeader = styled.div`
-  padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(10, 10, 10, 0.5);
-`;
-
-const ChatTitle = styled.h2`
-  color: #1DB954;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
-`;
-
-const ChatSubtitle = styled.p`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  margin: 8px 0 0 0;
-  text-align: center;
-`;
 
 const MessagesContainer = styled.div`
   flex: 1;
@@ -278,13 +258,6 @@ export const ChatInterface: React.FC = () => {
 
   return (
     <ChatContainer>
-      <ChatHeader>
-        <ChatTitle>AI Playlist Creator</ChatTitle>
-        <ChatSubtitle>
-          Tell me what kind of music you're in the mood for
-        </ChatSubtitle>
-      </ChatHeader>
-
       <MessagesContainer>
         {state.chatHistory.length === 0 ? (
           <EmptyState>

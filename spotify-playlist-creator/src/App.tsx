@@ -64,18 +64,18 @@ const MainContent = styled.div`
   z-index: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  padding: 24px;
-  height: calc(100vh - 160px); /* Account for header height (~160px) */
+  gap: 16px;
+  padding: 16px;
+  height: calc(100vh - 120px); /* Account for header height (~120px) */
   max-width: 1400px;
   margin: 0 auto;
   box-sizing: border-box;
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 16px;
-    height: calc(100vh - 140px); /* Smaller header on mobile */
+    gap: 12px;
+    padding: 12px;
+    height: calc(100vh - 100px); /* Smaller header on mobile */
   }
 `;
 
@@ -108,34 +108,35 @@ const RightPanel = styled.div`
 
 const Header = styled.div`
   text-align: center;
-  padding: 40px 20px;
+  padding: 20px 20px 0 20px;
   position: relative;
   z-index: 2;
 `;
 
 const AppTitle = styled.h1`
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 900;
   margin: 0;
   background: linear-gradient(135deg, #1DB954, #1ed760);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  padding-bottom: 0px;
   letter-spacing: -0.02em;
   
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 32px;
   }
 `;
 
 const AppSubtitle = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
-  margin: 12px 0 0 0;
+  margin: 4px 0 0 0;
   font-weight: 400;
   
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 

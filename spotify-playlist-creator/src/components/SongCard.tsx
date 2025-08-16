@@ -8,8 +8,8 @@ const CardContainer = styled(motion.div)`
   backdrop-filter: blur(10px);
   border: 1px solid rgba(29, 185, 84, 0.2);
   border-radius: 12px;
-  padding: 16px;
-  margin: 8px 0;
+  padding: 12px;
+  margin: 4px 0;
   transition: all 0.3s ease;
   cursor: grab;
   
@@ -28,18 +28,18 @@ const CardContainer = styled(motion.div)`
 const CardHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 `;
 
 const AlbumArt = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #1DB954, #1ed760);
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   flex-shrink: 0;
   position: relative;
@@ -71,9 +71,9 @@ const SongInfo = styled.div`
 
 const SongTitle = styled.h3`
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -81,7 +81,7 @@ const SongTitle = styled.h3`
 
 const ArtistName = styled.p`
   color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -91,10 +91,10 @@ const ArtistName = styled.p`
 const RemoveButton = styled.button`
   background: rgba(220, 20, 60, 0.1);
   border: 1px solid rgba(220, 20, 60, 0.3);
-  border-radius: 8px;
+  border-radius: 6px;
   color: #dc143c;
-  padding: 8px 12px;
-  font-size: 12px;
+  padding: 6px 10px;
+  font-size: 11px;
   cursor: pointer;
   transition: all 0.2s ease;
   
@@ -106,17 +106,17 @@ const RemoveButton = styled.button`
 
 const Reasoning = styled.p`
   color: rgba(255, 255, 255, 0.6);
-  font-size: 12px;
-  margin: 12px 0 0 0;
+  font-size: 11px;
+  margin: 8px 0 0 0;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.3;
 `;
 
 const DragHandle = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 8px;
+  gap: 1px;
+  padding: 6px;
   cursor: grab;
   opacity: 0.5;
   transition: opacity 0.2s ease;
@@ -131,8 +131,8 @@ const DragHandle = styled.div`
 `;
 
 const DragDot = styled.div`
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
 `;
