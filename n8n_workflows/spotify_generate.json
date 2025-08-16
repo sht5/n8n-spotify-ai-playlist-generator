@@ -24,9 +24,9 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "gpt-4.1",
+          "value": "gpt-4o-mini",
           "mode": "list",
-          "cachedResultName": "GPT-4.1"
+          "cachedResultName": "GPT-4O-MINI"
         },
         "messages": {
           "values": [
@@ -54,7 +54,7 @@
       "executeOnce": true,
       "credentials": {
         "openAiApi": {
-          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "id": "DjkHk9lLksrXZp3O",
           "name": "OpenAi account"
         }
       }
@@ -104,7 +104,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "7b03fd3d-9a47-41a5-b001-58518fd9e1e8",
+  "versionId": "6ed6e4a0-20e3-4b6a-99e3-0d030ae90c69",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "2abed0c114b5616f758cc70acc833b7c70c35c2a6f8faa6bb17df9259e92a6e9"

@@ -24,14 +24,14 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "gpt-4.1",
+          "value": "gpt-4o-mini",
           "mode": "list",
-          "cachedResultName": "GPT-4.1"
+          "cachedResultName": "GPT-4O-MINI"
         },
         "messages": {
           "values": [
             {
-              "content": "=You are refining a music playlist based on user feedback. You will receive the current playlist and user feedback. Modify the playlist accordingly but with at least 60 songs and\n  respond with the same JSON format:\n  {\n    \"suggestions\": [\n      {\n        \"artist\": \"Artist Name\",\n        \"title\": \"Song Title\",\n        \"reasoning\": \"Why this song fits the refined criteria\",\n        \"spotifySearchQuery\": \"artist song title\"\n      }\n    ],\n    \"playlistName\": \"Updated Playlist Name\",\n    \"playlistDescription\": \"Brief description reflecting changes\"\n  }\n  Current playlist: {{ JSON.stringify($json.body.currentPlaylist) }}\n  Apply the feedback to improve the playlist while maintaining 10-15 songs unless specified otherwise.",
+              "content": "=You are refining a music playlist based on user feedback. You will receive the current playlist and user feedback. Modify the playlist accordingly but with at least 60 songs and\n  respond with the same JSON format:\n  {\n    \"suggestions\": [\n      {\n        \"artist\": \"Artist Name\",\n        \"title\": \"Song Title\",\n        \"reasoning\": \"Why this song fits the refined criteria\",\n        \"spotifySearchQuery\": \"artist song title\"\n      }\n    ],\n    \"playlistName\": \"Updated Playlist Name\",\n    \"playlistDescription\": \"Brief description reflecting changes\"\n  }\n  Current playlist: {{ JSON.stringify($json.body.currentPlaylist) }}\n  Apply the feedback to improve the playlist while maintaining at least 60 songs unless specified otherwise.",
               "role": "system"
             },
             {
@@ -54,7 +54,7 @@
       "executeOnce": true,
       "credentials": {
         "openAiApi": {
-          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "id": "DjkHk9lLksrXZp3O",
           "name": "OpenAi account"
         }
       }
@@ -104,7 +104,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "ab0adfd7-e185-43c1-b951-e41d41a18fcc",
+  "versionId": "4b3271fc-811e-4be3-b8dc-03bb9c4363f2",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "2abed0c114b5616f758cc70acc833b7c70c35c2a6f8faa6bb17df9259e92a6e9"

@@ -21,7 +21,7 @@
       "executeOnce": false,
       "credentials": {
         "spotifyOAuth2Api": {
-          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "id": "bRKBhSNuUeLBrsLL",
           "name": "Spotify account"
         }
       }
@@ -72,7 +72,7 @@
       "name": "Add an Item to a playlist",
       "credentials": {
         "spotifyOAuth2Api": {
-          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "id": "bRKBhSNuUeLBrsLL",
           "name": "Spotify account"
         }
       }
@@ -156,7 +156,7 @@
       "name": "create_playlist",
       "credentials": {
         "spotifyOAuth2Api": {
-          "id": "YOUR_SPOTIFY_CREDENTIAL_ID",
+          "id": "bRKBhSNuUeLBrsLL",
           "name": "Spotify account"
         }
       }

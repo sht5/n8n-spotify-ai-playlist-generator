@@ -106,3 +106,4 @@ n8n_workflows_with_ids/*
 
 # Local development files
 .local
+n8n-data/*
